@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceModule } from './services/api.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,8 +12,10 @@ import { ServiceModule } from './services/api.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    ServiceModule.forRoot()
+    ServiceModule.forRoot(),
   ],
   providers: [ ServiceModule ],
   bootstrap: [ AppComponent ]

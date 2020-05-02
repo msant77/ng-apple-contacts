@@ -15,30 +15,12 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class ContactService {
-  
+
   constructor(private http: HttpClient) {}
-  
+
   list(): Observable<Contact[]> {
-    return this.http 
+    return this.http
       .get('./assets/contacts.json')
       .catch((error: any) => []);
-  }
-
-  rxjsGroupByLastNameFirstLetter(): Observable<any[]> {
-    return this
-      .http 
-      .get('./assets/contacts.json') //should be list 
-      .pipe(
-        groupBy((contact: Contact) => contact.lastName, (c: Contact) => c),
-        mergeMap(group => {
-          debugger;
-          return group.pipe(toArray())
-        })
-
-        // mergeMap(group => {
-        //   debugger;
-        //   return zip(of(group.key), group.pipe(toArray()))
-        // })
-      );
   }
 }

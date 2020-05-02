@@ -1,15 +1,21 @@
 # Angular Apple Contacts
 
 ## Tasks
-- [ ] define contact folder structure
 - [x] create Contact DTO
 - [x] create JSON file with 
 - [ ] create basic service with common mocked up methods
   - [x] list loading from JSON file 
   - [ ] remaining methods (add, update, delete, getById)
 - [x] create CSS basic side navbar structure
-- [x] Create the cointainer (app probably)
-- [ ] Create the contact-list component and use it from app-component
+- [x] create the cointainer (app probably)
+- [x] create details form as part of app.component
+  - [x] make it switchable for
+    - [x] view mode
+    - [x] edit mode
+    - [x] support delete
+    - [x] support update
+    - [x] support new
+- [ ] create the contact-list component and use it from app-component
   - [x] load inside app.component to test JSON loading
   - [x] group by last name first letter and load the menu
   - [ ] create structure and feed Main List Subject
@@ -18,8 +24,8 @@
 - [ ] create the contact-details component and its routes to be called from
 - [ ] feed the main Subject which whatever changes occur with the list items
 - [ ] Review the entire code and remove the comments related to angular CLI generated code
-- [ ] reforce linting
-- [ ] update README.md file
+- [-] keep linting
+- [-] update README.md file
 - [ ] add more tests
 
 

@@ -1,14 +1,14 @@
 export interface Contact {
-  id: number;
+  id: string;
   lastName: string;
   firstName: string;
   phone: string;
   email: string;
   address: string;
-  note: string;
+  notes: string;
 }
 
 export interface GroupedByContact {
-  firstLetter: string,
-  contacts: Contact[]
+  firstLetter: string;
+  contacts: Contact[];
 }

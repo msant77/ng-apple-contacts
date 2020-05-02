@@ -1,35 +1,125 @@
 <div class="container">
   <h1>Apple Contacts</h1>
   <div class="flex-grid">
-    <aside class="col sidebar">
+    <aside *ngIf="loaded" class="col sidebar">
       <div *ngFor="let group of groupedContacts">
         <div class="abc-container">
           <span class="abc-item">{{ group.firstLetter }}</span>
         </div>
-        <div *ngFor="let contact of group.contacts" class="name"> {{ contact.firstName }} {{ contact.lastName }} </div>
+        <hr>
+        <div
+          *ngFor="let contact of group.contacts"
+          [ngClass]="{
+            'name' : true,
+            'selected' : contact.id === selected.id
+          }"
+          (click)="select(contact)">
+          {{ contact.firstName }} {{ contact.lastName }}
+          <button *ngIf="contact.id === selected.id" (click)="delete()">-</button>
+        </div>
       </div>
-
     </aside>
 
-
-
     <section class="col main">
-      <!-- <div class="display-name">Arthur Rubinstein</div>
-      <div>
-        <input type="text">
-      </div>
-      <div>
-        <label>last name</label>
-      </div> -->
+      <div *ngIf="!editMode && loaded">
+        <div class="grid-row">
+          <div class="grid-col-name">
+            <span>{{ selected.firstName }} </span>
+          </div>
+          <div class="grid-col-name">
+            <span>{{ selected.lastName }} </span>
+          </div>
+          <div class="grid-col-name">
+            <label for="">first name</label>
+          </div>
+          <div class="grid-col-name">
+            <label for="">last name</label>
+          </div>
+        </div>
+  
+        <div class="grid-row">
+          <div class="grid-col-label">
+            phone
+          </div>
+          <div class="grid-col-input">
+            <span>{{ selected.phone }} </span>
+          </div>
+          <div class="grid-col-label">
+            email
+          </div>
+          <div class="grid-col-input">
+            <span>{{ selected.email }} </span>
+          </div>
+          <div class="grid-col-label">
+            address
+          </div>
+          <div class="grid-col-input">
+            <span>{{ selected.address }} </span>
+          </div>
+          <div class="grid-col-label">
+            notes
+          </div>
+          <div class="grid-col-input">
+            <span>{{ selected.notes }} </span>
+          </div>
+        </div>
 
-      <div class="grid-row">
-        <div class="grid-col">1</div>
-        <div class="grid-col">2</div>
-        <div class="grid-col">3</div>
-        <div class="grid-col">4</div>
-        <div class="grid-col">5</div>
-        <div class="grid-col">6</div>
-      </div>      
+      </div>
+
+      <form novalidate *ngIf="editMode && loaded" [formGroup]="form" (submit)="save()">
+
+        <div class="grid-row">
+          <div class="grid-col-name">
+            <input type="text" formControlName="firstName">
+          </div>
+          <div class="grid-col-name">
+            <input type="text" formControlName="lastName">
+          </div>
+          <div class="grid-col-name">
+            <label for="">first name</label>
+          </div>
+          <div class="grid-col-name">
+            <label for="">last name</label>
+          </div>
+        </div>
+
+        <div class="grid-row">
+          <div class="grid-col-label">
+            phone
+          </div>
+          <div class="grid-col-input">
+            <input type="text" formControlName="phone">
+          </div>
+          <div class="grid-col-label">
+            email
+          </div>
+          <div class="grid-col-input">
+            <input type="text" formControlName="email">
+          </div>
+          <div class="grid-col-label">
+            address
+          </div>
+          <div class="grid-col-input">
+            <textarea formControlName="address" id="" cols="30" rows="10"></textarea>
+          </div>
+          <div class="grid-col-label">
+            notes
+          </div>
+          <div class="grid-col-input">
+            <textarea formControlName="notes" id="" cols="30" rows="10"></textarea>
+          </div>
+        </div>
+      </form>
+
+      <div class="buttons-container">
+        <div class="buttons-item">
+          <button (click)="new()">+</button>
+        </div>
+        <div class="buttons-item">
+          <button *ngIf="!editMode && loaded" (click)="edit()">Edit</button>
+          <button *ngIf="editMode" (click)="save()">Done</button>
+        </div>
+      </div>
     </section>
   </div>
 </div>
