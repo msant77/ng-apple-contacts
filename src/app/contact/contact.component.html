@@ -2,19 +2,19 @@
   <div class="flex-grid">
     <aside *ngIf="loaded" class="sidebar">
       <div *ngFor="let group of groupedContacts">
-        <div class="abc-container">
-          <span class="abc-item">{{ group.firstLetter }}</span>
+        <div class="sidebar-abc-container">
+          <span class="sidebar-abc-container-item">{{ group.firstLetter }}</span>
         </div>
         <div
           *ngFor="let contact of group.contacts"
           [ngClass]="{
-            'name' : true,
+            'sidebar-name-item' : true,
             'selected' : contact.id === selected.id
           }"
           (click)="select(contact)">
-          <div class="name-text">{{ contact.firstName }} {{ contact.lastName }}</div>
+          <div class="sidebar-name-item-text">{{ contact.firstName }} {{ contact.lastName }}</div>
           <div
-            class="delete-button"
+            class="sidebar-name-item-delete-button"
             *ngIf="contact.id === selected.id"
             (click)="delete()">
           </div>
@@ -25,50 +25,49 @@
     <section class="col main">
       <form novalidate *ngIf="loaded" [formGroup]="form" (submit)="save()">
 
-        <div *ngIf="!editMode" class="grid-row">
+        <div *ngIf="!editMode" class="full-name">
           <div class="full-name-box">
-            <div class="grid-col-name name">
+            <div class="full-name-box-text name">
               <span>{{ selected.firstName }} {{ selected.lastName }} </span>
             </div>
           </div>
         </div>
 
-        <div class="grid-name" *ngIf="editMode">
-
-          <div class="grid-col-name">
+        <div class="full-name-edit" *ngIf="editMode">
+          <div class="full-name-edit-name">
             <input type="text" formControlName="firstName">
             <label for="">first name</label>
           </div>
-          <div class="grid-col-name">
+          <div class="full-name-edit-name">
             <input type="text" formControlName="lastName">
             <label for="">last name</label>
           </div>
         </div>
 
-        <div class="grid-row">
-          <div class="grid-row-control">
-            <div class="grid-col-label border">
+        <div class="record">
+          <div class="record-control">
+            <div class="record-control-label border">
               phone
             </div>
-            <div class="grid-col-input">
+            <div class="record-control-input">
               <input type="text" formControlName="phone" [readonly]="!editMode">
             </div>            
           </div>
 
-          <div class="grid-row-control">
-            <div class="grid-col-label">
+          <div class="record-control">
+            <div class="record-control-label">
               email
             </div>
-            <div class="grid-col-input">
+            <div class="record-control-input">
               <input type="text" formControlName="email" [readonly]="!editMode">
             </div>
           </div>
 
-          <div class="grid-row-control">
-            <div class="grid-col-label">
+          <div class="record-control">
+            <div class="record-control-label">
               address
             </div>
-            <div class="grid-col-input">
+            <div class="record-control-input">
               <textarea
                 class="address"
                 formControlName="address"
@@ -80,11 +79,11 @@
             </div>
           </div>
 
-          <div class="grid-row-control">
-            <div class="grid-col-label borderless">
+          <div class="record-control">
+            <div class="record-control-label borderless">
               notes
             </div>
-            <div class="grid-col-input borderless">
+            <div class="record-control-input borderless">
               <textarea
                 class="notes"
                 formControlName="notes"
@@ -99,11 +98,11 @@
         </div>
       </form>
 
-      <div class="buttons-container">
-        <div class="buttons-item">
+      <div class="buttons-box">
+        <div class="buttons-box-item">
           <button *ngIf="!isNew" (click)="new()">+</button>
         </div>
-        <div class="buttons-item">
+        <div class="buttons-box-item">
           <button *ngIf="!editMode && loaded" (click)="edit()">
             <span>Edit</span>
           </button>

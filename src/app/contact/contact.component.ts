@@ -3,7 +3,6 @@ import { ContactService } from '../services/contact.service';
 import { Contact, GroupedByContact } from '../models/contact';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Guid } from '../help/guid';
-import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-contact',
@@ -21,8 +20,6 @@ export class ContactComponent implements OnInit{
   emptyList = true;
   selected: Contact;
   loaded = false;
-
-  faMinusCircle = faMinusCircle;
 
   constructor(
     private contactService: ContactService,
@@ -58,15 +55,9 @@ export class ContactComponent implements OnInit{
             });
           }
           return groups;
-        }, [])
-        .sort((a: GroupedByContact, b: GroupedByContact) => {
-          if (a.firstLetter < b.firstLetter) {
-            return -1;
-          } else if (a.firstLetter > b.firstLetter) {
-            return 1;
-          }
-          return 0;
-        });
+        }, []);
+
+      this.sortData();
 
       this.generateForm();
 
@@ -79,6 +70,29 @@ export class ContactComponent implements OnInit{
       this.loaded = true;
     });
   }
+
+  sortData() {
+    this.groupedContacts = this.groupedContacts
+      .sort((a: GroupedByContact, b: GroupedByContact) => {
+        if (a.firstLetter < b.firstLetter) {
+          return -1;
+        } else if (a.firstLetter > b.firstLetter) {
+          return 1;
+        }
+        return 0;
+      })
+      .map(g => ({
+        ...g, 
+        contacts: g.contacts.sort((a: Contact, b: Contact) => {
+          if (a.lastName < b.lastName) {
+            return -1;
+          } else if (a.lastName > b.lastName) {
+            return 1;
+          }
+          return 0;
+      })}));
+  }
+
 
   getEmpty(): Contact {
     return {
@@ -117,6 +131,7 @@ export class ContactComponent implements OnInit{
   }
 
   new() {
+    this.loaded = false;
     this.selected = this.getEmpty();
     this.select(this.selected);
     this.isNew = true;
@@ -135,8 +150,9 @@ export class ContactComponent implements OnInit{
     if (!formData.firstName.value && !formData.lastName.value) {
       const hasData = this.groupedContacts.length && this.groupedContacts[0].contacts.length;
       if (hasData) {
-        this.selected = this.groupedContacts[0].contacts[0];
+        this.select(this.groupedContacts[0].contacts[0]);
       }
+      this.loaded = false;
       this.isNew = false;
       this.editMode = false;
       this.loaded = true;
@@ -177,6 +193,7 @@ export class ContactComponent implements OnInit{
         this.groupedContacts.push(group);
       }
     }
+    this.sortData();
     this.selected = contact;
     this.editMode = false;
     this.isNew = false;
@@ -200,7 +217,7 @@ export class ContactComponent implements OnInit{
     }
 
     if (this.groupedContacts.length) {
-      this.selected = this.groupedContacts[0].contacts[0];
+      this.select(this.groupedContacts[0].contacts[0]);
       this.loaded = true;
     } else {
       this.selected = {} as Contact;
