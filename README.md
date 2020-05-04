@@ -1,5 +1,7 @@
 # Angular Apple Contacts
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+
 ## Tasks
 - [x] create Contact DTO
 - [x] create JSON file with 
@@ -29,9 +31,6 @@
 - [ ] add more tests
 
 
-# NgAppleContacts
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
 ## Development server
 
@@ -49,3 +48,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+>
+> data generated with [Mockroo](https://mockaroo.com/)
+>

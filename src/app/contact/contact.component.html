@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="flex-grid">
+    <aside *ngIf="loaded" class="sidebar">
+      <div *ngFor="let group of groupedContacts">
+        <div class="abc-container">
+          <span class="abc-item">{{ group.firstLetter }}</span>
+        </div>
+        <div
+          *ngFor="let contact of group.contacts"
+          [ngClass]="{
+            'name' : true,
+            'selected' : contact.id === selected.id
+          }"
+          (click)="select(contact)">
+          <div class="name-text">{{ contact.firstName }} {{ contact.lastName }}</div>
+          <div
+            class="delete-button"
+            *ngIf="contact.id === selected.id"
+            (click)="delete()">
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="col main">
+      <form novalidate *ngIf="loaded" [formGroup]="form" (submit)="save()">
+
+        <div *ngIf="!editMode" class="grid-row">
+          <div class="full-name-box">
+            <div class="grid-col-name name">
+              <span>{{ selected.firstName }} {{ selected.lastName }} </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-name" *ngIf="editMode">
+
+          <div class="grid-col-name">
+            <input type="text" formControlName="firstName">
+            <label for="">first name</label>
+          </div>
+          <div class="grid-col-name">
+            <input type="text" formControlName="lastName">
+            <label for="">last name</label>
+          </div>
+        </div>
+
+        <div class="grid-row">
+          <div class="grid-row-control">
+            <div class="grid-col-label border">
+              phone
+            </div>
+            <div class="grid-col-input">
+              <input type="text" formControlName="phone" [readonly]="!editMode">
+            </div>            
+          </div>
+
+          <div class="grid-row-control">
+            <div class="grid-col-label">
+              email
+            </div>
+            <div class="grid-col-input">
+              <input type="text" formControlName="email" [readonly]="!editMode">
+            </div>
+          </div>
+
+          <div class="grid-row-control">
+            <div class="grid-col-label">
+              address
+            </div>
+            <div class="grid-col-input">
+              <textarea
+                class="address"
+                formControlName="address"
+                id=""
+                cols="30"
+                rows="10"
+                [readonly]="!editMode">
+              </textarea>
+            </div>
+          </div>
+
+          <div class="grid-row-control">
+            <div class="grid-col-label borderless">
+              notes
+            </div>
+            <div class="grid-col-input borderless">
+              <textarea
+                class="notes"
+                formControlName="notes"
+                id=""
+                cols="30"
+                rows="10"
+                [readonly]="!editMode">
+              </textarea>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+      <div class="buttons-container">
+        <div class="buttons-item">
+          <button *ngIf="!isNew" (click)="new()">+</button>
+        </div>
+        <div class="buttons-item">
+          <button *ngIf="!editMode && loaded" (click)="edit()">
+            <span>Edit</span>
+          </button>
+          <button *ngIf="editMode" (click)="save()">
+            <span>Done</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
