@@ -4,3 +4,5 @@ package-lock.json
 extracts
 .DS_Store
 dist
+
+.now

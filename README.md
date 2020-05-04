@@ -1,5 +1,7 @@
 # Angular Apple Contacts
 
+The running/preview of this app can be found at the following [Vercel/Now link](https://ng-apple-contacts.now.sh/).
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
 ## Tasks
