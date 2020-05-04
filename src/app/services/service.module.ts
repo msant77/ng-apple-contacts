@@ -1,4 +1,4 @@
-import { /* HTTP_INTERCEPTORS, */ HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ContactService } from './contact.service';
 
@@ -10,7 +10,6 @@ export class ServiceModule {
     return {
       ngModule: ServiceModule,
       providers: [
-        // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         ContactService,
       ],
     };

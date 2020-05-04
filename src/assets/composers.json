@@ -1,0 +1,34 @@
+[
+  {
+    "firstName" : "Amadeus",
+    "lastName" : "Mozart",
+    "phone":  "+1 127 1756",
+    "email": "mozart@heaven.music",
+    "address": "9 Getreidegasse, Salzburg, Austria",
+    "notes": "Le Nozze di Figaro; Dies Irae; Lacrimosa; Piano Sonatas; Die Zauberflaute;"
+  },
+  {
+    "firstName" : "Ludwig",
+    "lastName" : "Beethoven",
+    "phone":  "+1 112 1770",
+    "email": "beethoven@heaven.music",
+    "address": "777 All Philarmonica\n Vienna \n Austria",
+    "notes": "7th Symphony; 9th Symphony; Apassionata; Tempest; Moonlight;"
+  },
+  {
+    "firstName" : "Giaochino",
+    "lastName" : "Rossini",
+    "phone":  "+1 229 1792",
+    "email": "rossini@heaven.music",
+    "address": "777 Teatro dell'opera\n Pesaro\n Italy",
+    "notes": "Il Barbieri Di Seviglia; La Gazza Ladra; Al factotum; La calunia es un venticcelo"
+  },
+  {
+    "firstName" : "Georges",
+    "lastName" : "Bizet",
+    "phone":  "+1 1025 1838",
+    "email": "bizet@heaven.music",
+    "address": "777 La Rose et l'abeille\n Paris\n France",
+    "notes": "L'amour es un oiseau rebelle; Toreador;"
+  }
+]
